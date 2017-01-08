@@ -9,30 +9,32 @@ exports.chunk = function(text, length, options = {}) {
   }
 
   var addToStack = function() {
-    tmpstring = tmpstring.trim();
-    result.push(tmpstring);
+    candidate = candidate.trim();
+    if (candidate.length == 0) { return; }
+    result.push(candidate);
     stringcount = 0;
-    tmpstring = '';
+    candidate = '';
   }
 
   var sentences = tokenizer.sentences(text);
   var result = [];
   var stringcount = 0;
-  var tmpstring = '';
+  var candidate = '';
   while(sentence = sentences.shift()) {
-    var s = tmpstring + sentence + ' ';
+    var s = candidate + sentence + ' ';
     if (sentence.length >= length) {
       // put the current candidate into the result & reset
+
       addToStack();
       // the sentence has no newlines and exceeds our length, so split it up in the middle
       var parts = sentence.match(new RegExp('.{1,'+length+'}', "g")) || [];
-      parts = parts.map(function(p){return p.trim();})
+      parts = parts.map(function(p){return p.trim();});
       // now merge the split sentence into the result
       result = result.concat(parts);
     } else if (stringcount + s.length <= length) {
       // adding this sentence won't cause us to exceed length
       stringcount += s.length;
-      tmpstring = s;
+      candidate = s;
     } else {
       // adding sentence would cause excessive length, push to result and reset
       addToStack();
@@ -42,7 +44,7 @@ exports.chunk = function(text, length, options = {}) {
   }
 
   // If last iteration left us with leftover content, add to the result
-  if (tmpstring.length) {
+  if (candidate.length) {
     addToStack();
   }
   if (callback) {
