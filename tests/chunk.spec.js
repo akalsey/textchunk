@@ -44,4 +44,14 @@ describe('chunk', function () {
     expect(parts[8]).to.equal('erica');
   });
 
+  it('should use a callback when specified', function(done) {
+    const text = "How now brown cow?";
+    textchunk.chunk(text, 48, {callback: function(parts){
+      expect(parts.length).to.equal(1);
+      expect(parts[0]).to.equal('How now brown cow?');
+      done();
+    }});
+    should.equal(parts, undefined);
+  });
+
 });
