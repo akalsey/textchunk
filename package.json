@@ -1,0 +1,30 @@
+{
+  "name": "textchunk",
+  "version": "1.0.0",
+  "description": "Split text into specific sized chunks, preserving whole sentences when possible.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akalsey/textchunk.git"
+  },
+  "keywords": [
+    "text",
+    "split",
+    "chunk"
+  ],
+  "author": "Adam Kalsey",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/akalsey/textchunk/issues"
+  },
+  "homepage": "https://github.com/akalsey/textchunk#readme",
+  "dependencies": {
+    "sbd": "^1.0.11"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0"
+  }
+}
