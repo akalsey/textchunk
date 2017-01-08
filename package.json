@@ -1,6 +1,6 @@
 {
   "name": "textchunk",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Split text into specific sized chunks, preserving whole sentences when possible.",
   "main": "index.js",
   "scripts": {
