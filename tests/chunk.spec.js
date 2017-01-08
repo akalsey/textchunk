@@ -6,7 +6,7 @@ var assert = chai.assert;
 var expect = chai.expect;
 
 describe('chunk', function () {
-  it('should split Peter Piper into 48 characters', function() {
+  it('should split a sentence in the middle if it is too long', function() {
     const text = "Peter Piper picked a peck of pickled peppers. A peck of pickled peppers Peter Piper picked. If Peter Piper picked a peck of pickled peppers, where's the peck of pickled peppers Peter Piper picked?";
     var parts = textchunk.chunk(text, 48);
 
@@ -18,7 +18,7 @@ describe('chunk', function () {
     expect(parts[4]).to.equal('picked?');
   });
 
-  it('should not split the gettysburg address', function () {
+  it('should not split if chunk size is equal to text length', function () {
     const text = "Four score and seven years ago our fathers brought forth on this continent, a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal.";
     var parts = textchunk.chunk(text, 177);
 
@@ -27,7 +27,7 @@ describe('chunk', function () {
     expect(parts[0]).to.equal("Four score and seven years ago our fathers brought forth on this continent, a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal.");
   });
 
-  it('should split the constitution preamble', function () {
+  it('should split in the middle of a word if chunk size is smaller than words', function () {
     const text = "We the People of the United States of America";
     var parts = textchunk.chunk(text, 5);
 
