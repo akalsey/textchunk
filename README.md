@@ -16,6 +16,28 @@ var parts = textchunk.chunk(text, numberOfParts, options);
 
 Returns an array of sentences. Each sentence will be `numberOfParts` long or shorter.
 
+#### Optional Options
+
+```
+var options = {
+    "callback"           : null,
+    "newline_boundaries" : false,
+    "html_boundaries"    : false,
+    "sanitize"           : false,
+    "allowed_tags"       : false,
+    "abbreviations"      : null
+};
+```
+
+* `callback`, send result to this callback, instead of returning it
+* `newline_boundaries`, force sentence split at newlines
+* `html_boundaries`, force sentence split at specific tags (br, and closing p, div, ul, ol)
+* `sanitize`: If you don't expect nor want html in your text.
+* `allowed_tags`: To sanitize html, the library [santize-html](https://github.com/punkave/sanitize-html) is used. You can pass the allowed tags option.
+* `abbreviations`: list of abbreviations to override the original ones for use with other languages. Don't put dots in abbreviations.
+
+Other than the `callback` option, all options are simply passthroughs to the [`sbd`](https://www.npmjs.com/package/sbd) module, that provides the sentence detection.
+
 ## Examples
 
 Split the Gettysburg Address into 200 character parts.

@@ -16,7 +16,7 @@ exports.chunk = function(text, length, options = {}) {
     candidate = '';
   }
 
-  var sentences = tokenizer.sentences(text);
+  var sentences = tokenizer.sentences(text, options);
   var result = [];
   var stringcount = 0;
   var candidate = '';
